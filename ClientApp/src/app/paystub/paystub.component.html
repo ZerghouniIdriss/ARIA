@@ -1,0 +1,22 @@
+<table class="paystub-table">
+  <thead>
+    <tr>
+      <th>Employee</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Total Hours</th>
+      <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let paystub of paystubs">
+      <td>{{ paystub.employee.firstName }} {{ paystub.employee.lastName }}</td>
+      <td>{{ paystub.startDate | date: 'yyyy-MM-dd':'UTC' }}</td>
+      <td>{{ paystub.endDate | date: 'yyyy-MM-dd':'UTC' }}</td>
+      <td>{{ paystub.totalHours }}</td>
+      <td>
+        <button class="btn btn-primary" (click)="sendPaystub(paystub)">Send to employee</button>
+        <button class="btn btn-primary" (click)="viewPaystub(paystub)">Download preview</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

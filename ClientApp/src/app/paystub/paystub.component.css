@@ -1,0 +1,41 @@
+.paystub-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: smaller;
+    font-family: Arial, sans-serif;
+  }
+  
+    .paystub-table th,
+    .paystub-table td {
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+  
+    .paystub-table th {
+      text-align: left;
+      background-color: #eee;
+    }
+  
+    .paystub-table td.week-day {
+      width: 60px;
+      font-size: smaller;
+      text-align: center;
+    }
+  
+    .paystub-table input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    .paystub-table tr:hover {
+      background-color: #f5f5f5;
+    }
+
+
+button {
+  float: right;
+  padding: 5px;
+  margin-left: 5px;
+  border: none;
+  cursor: pointer;
+}

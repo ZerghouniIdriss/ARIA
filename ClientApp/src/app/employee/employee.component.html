@@ -1,0 +1,153 @@
+
+
+<div *ngIf="isAdding">
+    <form #employeeForm="ngForm" (ngSubmit)="createEmployee()">
+      <div class="row form-row">
+        <div class="form-group col-md-4">
+          <label for="id">ID/Email:</label>
+          <input type="text" class="form-control" [(ngModel)]="employee.id" name="id" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="firstName">First Name:</label>
+          <input type="text" class="form-control" [(ngModel)]="employee.firstName" name="firstName" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="lastName">Last Name:</label>
+          <input type="text" class="form-control" [(ngModel)]="employee.lastName" name="lastName" required>
+        </div>
+      </div>
+      <div class="row form-row ">
+        <div class="form-group col-md-6">
+          <label for="title">Title:</label>
+          <input type="text" class="form-control" [(ngModel)]="employee.title" name="title">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="rate">Rate:</label>
+          <input type="number" class="form-control" [(ngModel)]="employee.rate" name="rate" required>
+        </div>
+      </div>
+      <div class="row form-row">
+        <div class="form-group col-md-6">
+          <label for="provTax">Provincial Tax:</label>
+          <input type="number" class="form-control" [(ngModel)]="employee.provTax" name="provTax" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="fedTax">Federal Tax:</label>
+          <input type="number" class="form-control" [(ngModel)]="employee.fedTax" name="fedTax" required>
+        </div>
+      </div>
+
+      <div class="row form-row">
+        <div class="form-group col-md-4">
+          <label for="rrq">RRQ:</label>
+          <input type="number" class="form-control" [(ngModel)]="employee.rrq" name="rrq" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="rqap">RQAP:</label>
+          <input type="number" class="form-control" [(ngModel)]="employee.rqap" name="rqap" required>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="vacation">Vacation:</label>
+          <input type="number" class="form-control" [(ngModel)]="employee.vacation" name="vacation" required>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" [disabled]="!employeeForm.form.valid">Save</button>
+      <button (click)="CancelAdd()">Cancel</button>
+
+    </form>
+  </div>
+
+<button *ngIf="!isAdding" class="btn-primary" (click)="addAction()">Add New</button>
+<br>
+<br>
+
+
+
+<table class="employee-table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Title</th>
+      <th>Rate</th>
+      <th>Fed Tax</th>
+      <th>Prov Tax</th>
+      <th>RRQ</th>
+      <th>RQAP</th>
+      <th>Vacation</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>
+        {{ employee.id }}
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else firstName">
+          <input type="text" [(ngModel)]="employee.firstName" name="firstName" />
+        </div>
+        <ng-template #firstName>{{ employee.firstName }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else lastName">
+          <input type="text" [(ngModel)]="employee.lastName" name="lastName" />
+        </div>
+        <ng-template #lastName>{{ employee.lastName }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else lastName">
+          <input type="text" [(ngModel)]="employee.title" name="title" />
+        </div>
+        <ng-template #lastName>{{ employee.title }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else rate">
+          <input type="number" [(ngModel)]="employee.rate" name="rate" />
+        </div>
+        <ng-template #rate>{{ employee.rate }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else fedTax">
+          <input type="number" [(ngModel)]="employee.fedTax" name="fedTax" />
+        </div>
+        <ng-template #fedTax>{{ employee.fedTax }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else provTax">
+          <input type="number" [(ngModel)]="employee.provTax" name="provTax" />
+        </div>
+        <ng-template #provTax>{{ employee.provTax }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else rrq">
+          <input type="number" [(ngModel)]="employee.rrq" name="rrq" />
+        </div>
+        <ng-template #rrq>{{ employee.rrq }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else rqap">
+          <input type="number" [(ngModel)]="employee.rqap" name="rqap" />
+        </div>
+        <ng-template #rqap>{{ employee.rqap }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else vacation">
+          <input type="number" [(ngModel)]="employee.vacation" name="vacation" />
+        </div>
+        <ng-template #vacation>{{ employee.vacation }}</ng-template>
+      </td>
+      <td>
+        <div *ngIf="employee.isEditing; else actions">
+          <button (click)="saveEmployee(employee)">Save</button>
+          <button (click)="cancelEditing(employee)">Cancel</button>
+        </div>
+        <ng-template #actions>
+          <button (click)="enableEditing(employee)">Edit</button>
+          <button (click)="deleteEmployee(employee.id)">Delete</button>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>

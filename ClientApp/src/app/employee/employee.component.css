@@ -1,0 +1,77 @@
+.employee-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: smaller;
+    font-family: Arial, sans-serif;
+  }
+  
+    .employee-table th,
+    .employee-table td {
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+  
+    .employee-table th {
+      text-align: left;
+      background-color: #eee;
+    }
+  
+    .employee-table td.week-day {
+      width: 60px;
+      font-size: smaller;
+      text-align: center;
+    }
+  
+    .employee-table input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  
+    .employee-table tr:hover {
+      background-color: #f5f5f5;
+    }
+   
+  
+   
+  
+  button {
+    float: right;
+     padding: 5px;
+     margin-top: 10px;
+     margin-left: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+  } 
+  
+  .panel-submit {
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    margin-top: 15px;
+  }
+ 
+  @media only screen and (max-width: 600px) {
+    .employee-table {
+      width: 100%;
+    }
+  
+      .employee-table th,
+      .employee-table td {
+        display: block;
+        width: 100%;
+      }
+  
+      .employee-table th {
+        text-align: right;
+      }
+  }
+

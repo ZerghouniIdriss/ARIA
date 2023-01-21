@@ -1,0 +1,163 @@
+<div class="row form-row">
+  <div class="form-group col-md-4">
+    <label for="employeeId">Employee:</label>
+    <input class="form-control" type="text" value="{{ employee?.fullName }}" name="employeeId" disabled />
+  </div>
+
+  <div class="form-group col-md-4">
+    <label for="baseDate">Week Date:</label>
+    <input class="form-control" type="date" (mouseenter)="highlightWeek()" (mouseleave)="removeHighlight()"
+           [value]="baseDate | date:'yyyy-MM-dd':'UTC'" (change)="changeDate($event.target.value)"> 
+  </div>
+
+
+  <div class="form-group col-md-4">
+    <label for="status">Status:</label>
+    <input class="form-control" type="text" value="{{timeSheet.statusDisplay()}}" name="status" disabled />
+  </div>
+</div>
+
+<br>
+
+<table class="time-sheet-table">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>{{ sundayDate | date: 'MM-dd EEE' }}</th>
+      <th>{{ mondayDate | date: 'MM-dd EEE' }}</th>
+      <th>{{ tuesdayDate | date: 'MM-dd EEE' }}</th>
+      <th>{{ wednesdayDate | date: 'MM-dd EEE' }}</th>
+      <th>{{ thursdayDate | date: 'MM-dd EEE' }}</th>
+      <th>{{ fridayDate | date: 'MM-dd EEE' }}</th>
+      <th>{{ saturdayDate | date: 'MM-dd EEE' }}</th>
+      <th>Tasks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Regular Time
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d0.regular" name="d0" [disabled]="!timeSheet.isEditable()" />
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d1.regular" name="d1" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d2.regular" name="d2" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d3.regular" name="d3" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d4.regular" name="d4" [disabled]="!timeSheet.isEditable()" />
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d5.regular" name="d5"[disabled]="!timeSheet.isEditable()" />
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d6.regular" name="d6" [disabled]="!timeSheet.isEditable()" />
+      </td>
+      <td rowspan="3">
+        <textarea type="text" [(ngModel)]="timeSheet.tasks" name="tasks" [disabled]="!timeSheet.isEditable()"></textarea>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td>
+        Over Time
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d0.overtime" name="d0" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d1.overtime" name="d1" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d2.overtime" name="d2" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d3.overtime" name="d3" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d4.overtime" name="d4" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d5.overtime" name="d5" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d6.overtime" name="d6" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+
+    </tr>
+
+    <tr>
+      <td>
+        Paid vacation
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d0.vacation" name="d0"  [disabled]="!timeSheet.isEditable()" />
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d1.vacation" name="d1" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d2.vacation" name="d2" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d3.vacation" name="d3" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d4.vacation" name="d4" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d5.vacation" name="d5" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+      <td class="week-day">
+        <input type="number" [(ngModel)]="timeSheet.d6.vacation" name="d6" [disabled]="!timeSheet.isEditable()"/>
+      </td>
+
+    </tr>
+
+    <tr>
+      <td>
+        Total
+      </td>
+      <td>
+        {{timeSheet.d0.total()}}
+      </td>
+      <td>
+        {{timeSheet.d1.total()}}
+      </td>
+      <td>
+        {{timeSheet.d2.total()}}
+      </td>
+      <td>
+        {{timeSheet.d3.total()}}
+      </td>
+      <td>
+        {{timeSheet.d4.total()}}
+      </td>
+      <td>
+        {{timeSheet.d5.total()}}
+      </td>
+      <td>
+        {{timeSheet.d6.total()}}
+      </td>
+      <td>
+        Total entred hours for the week: <b>{{timeSheet.total()}} </b>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="panel-submit">
+  <label for="comment">Comment:</label>
+  <input id="comment" [(ngModel)]="timeSheet.comments" name="comments" [disabled]="!timeSheet.isEditable()"/>
+  <button #submitButton class="btn btn-primary" (click)="submitConfirmation()" [disabled]="!timeSheet.isEditable()">Submit</button>
+
+</div>
+
