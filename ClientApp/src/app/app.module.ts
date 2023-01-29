@@ -35,11 +35,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     ApiAuthorizationModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'time-sheet', component: TimeSheetComponent  },
-      { path: 'employee', component: EmployeeComponent  },
-      { path: 'paystub', component: PaystubComponent  },
+      { path: "", component: HomeComponent },
+       { path: 'time-sheet', component: TimeSheetComponent, canActivate: [AuthorizeGuard] },
+      { path: 'employee', component: EmployeeComponent, canActivate: [AuthorizeGuard] },
+      { path: 'paystub', component: PaystubComponent, canActivate: [AuthorizeGuard]   },
 
 
     ])

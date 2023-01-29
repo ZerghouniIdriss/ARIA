@@ -1,3 +1,6 @@
+<button class="btn btn-primary" (click)="sendToAllConfirmation()">Send to all employees</button>
+<br>
+<br>
 <table class="paystub-table">
   <thead>
     <tr>
@@ -7,6 +10,7 @@
       <th>Total Hours</th>
       <th>Actions</th>
   </thead>
+
   <tbody>
     <tr *ngFor="let paystub of paystubs">
       <td>{{ paystub.employee.firstName }} {{ paystub.employee.lastName }}</td>

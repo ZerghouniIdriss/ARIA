@@ -39,4 +39,19 @@ export class PaystubComponent {
     );
   }
 
+  sendToAll() {
+    this.service.sendPayStubsToAll(new Date()).subscribe((data: string) => {
+      console.log(data);
+      const doc = new jsPDF();
+      doc.html(data);
+      doc.save('download.pdf');
+    }
+    );
+  }
+
+  sendToAllConfirmation() {
+    if (confirm("Make sure you know what you are doing ! If you confirm all the employees will recieve this email. Would like to continue ?")) {
+      this.sendToAll()
+    }
+  }
 }

@@ -86,4 +86,9 @@ export class Service {
     var date = weekDate.toISOString().slice(0, 10);
     return this.http.get(this.paystubUrl + '/' + 'send/'+ employeeId + '/' + date);
   }
+
+  sendPayStubsToAll( weekDate: Date) {
+    var date = weekDate.toISOString().slice(0, 10);
+    return this.http.get(this.paystubUrl + '/' + 'send/'  + date);
+  }
 }
